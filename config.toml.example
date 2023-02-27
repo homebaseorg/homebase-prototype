@@ -1,0 +1,5 @@
+server="localhost"
+port="4250"
+
+[Tags]
+blogs=["https://lawrencelogoh.com/rss.xml", "https://protesilaos.com/master.xml"]
