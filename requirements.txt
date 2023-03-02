@@ -1,0 +1,4 @@
+feedparser==6.0.10
+sgmllib3k==1.0.0
+tomli==2.0.1
+xdg==5.1.1
