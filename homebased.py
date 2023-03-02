@@ -2,7 +2,7 @@ import tomli as tomllib
 from pathlib import Path
 from shutil import copy
 from xdg import xdg_config_home, xdg_data_home
-import sqlite3 as sql
+import db
 import handlers
 
 
@@ -14,12 +14,7 @@ database_file = data_dir / "cache.db"
 
 
 def main():
-    if not config_dir.exists():
-        config_dir.mkdir()
-
-    if not config_file.exists():
-        copy(config_file_example, config_file)
-
+    check_existence()
     with open(config_file, "rb") as f:
         data = tomllib.load(f)
         content_by_tag = data["Tags"]
@@ -36,6 +31,22 @@ def main():
         print(f"link: {link}")
         print(f"date: {date}")
         print(f"content: {content}")
+
+
+def check_existence():
+    # check if config dir and file exists
+    if not config_dir.exists():
+        config_dir.mkdir()
+
+    if not config_file.exists():
+        copy(config_file_example, config_file)
+
+    # check if data dir and database exists
+    if not data_dir.exists():
+        data_dir.mkdir()
+
+    if not database_file.exists():
+        db.create_table(database_file)
 
 
 if __name__ == "__main__":
