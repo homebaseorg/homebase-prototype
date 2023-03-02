@@ -1,12 +1,16 @@
 import tomli as tomllib
 from pathlib import Path
 from shutil import copy
-from xdg import xdg_config_home
+from xdg import xdg_config_home, xdg_data_home
+import sqlite3 as sql
 import handlers
 
+
 config_dir = xdg_config_home() / "homebase"
+data_dir = xdg_data_home() / "homebase"
 config_file = config_dir / "config.toml"
 config_file_example = Path("config.toml.example")
+database_file = data_dir / "cache.db"
 
 
 def main():
@@ -18,14 +22,20 @@ def main():
 
     with open(config_file, "rb") as f:
         data = tomllib.load(f)
+        content_by_tag = data["Tags"]
+        # for tag in content_by_tag
         links = data["Tags"]["blogs"][0]
         entries = handlers.handle_rss(links)["entries"]
-        title = entries[0]["title"]
-        summary = entries[0]["summary"]
-        link = entries[0]["link"]
+
+        title = entries[1]["title"]
+        summary = entries[1]["content"]
+        link = entries[1]["link"]
+        date = entries[1]["date"]
+        content = entries[1]["content"]
         print(f"Title: {title}")
-        print(f"Title: {link}")
-        print(f"Title: {summary}")
+        print(f"link: {link}")
+        print(f"date: {date}")
+        print(f"content: {content}")
 
 
 if __name__ == "__main__":
