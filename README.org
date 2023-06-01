@@ -1,0 +1,18 @@
+* Homebase
+
+Homebase serves as a central hub for accessing a variety of content, including live streams from YouTube and Twitch, videos on demand (VODs), and RSS feeds.
+It has a client-server design, where the server performs the task of obtaining the content and the client offers a user interface for viewing the content.
+
+Three different user interfaces are available: a web-based interface, an android mobile app and a terminal-based interface.
+Whether you prefer using a web browser, mobile app or the terminal, Homebase has you covered.
+
+/This is a prototype, expect things to be broken/
+
+* Installing
+...
+  
+* Usage
+...
+  
+* Contributing
+...
